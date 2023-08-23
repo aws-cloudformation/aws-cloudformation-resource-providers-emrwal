@@ -21,7 +21,7 @@ Resources:
                   Ref: AWS::AccountId
               StringLike:
                 aws:SourceArn:
-                  Fn::Sub: arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:type/resource/AWS-EMRWAL-WALWorkspace/*
+                  Fn::Sub: arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:type/resource/AWS-EMR-WALWorkspace/*
       Path: "/"
       Policies:
         - PolicyName: ResourceTypePolicy
@@ -31,10 +31,12 @@ Resources:
               - Effect: Allow
                 Action:
                 - "emrwal:CreateWorkspace"
-                - "emrwal:TagResource"
+                - "emrwal:DeleteWorkspace"
                 - "emrwal:ListTagsForResource"
-                - "emrwal:DeleterWorkspace"
                 - "emrwal:ListWorkspaces"
+                - "emrwal:TagResource"
+                - "emrwal:UntagResource"
+                - "iam:CreateServiceLinkedRole"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:
