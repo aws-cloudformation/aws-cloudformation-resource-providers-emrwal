@@ -10,7 +10,7 @@ plugins {
 def resource_name_with_dashes = 'aws-emr-walworkspace'
 def schema_file = "${resource_name_with_dashes}.json"
 
-description 'CloudFormation Resource Provider - AWS::EMRWAL::WALWorkspace'
+description 'CloudFormation Resource Provider - AWS::EMR::WALWorkspace'
 
 // Include RPDK generated source by `cfn generate`
 sourceSets.main.java.srcDir 'target/generated-sources/rpdk'

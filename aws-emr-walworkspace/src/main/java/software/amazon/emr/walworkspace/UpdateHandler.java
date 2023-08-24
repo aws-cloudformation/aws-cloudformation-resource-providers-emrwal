@@ -52,7 +52,7 @@ public class UpdateHandler extends BaseHandlerStd {
             String partition = request.getAwsPartition();
             String region = request.getRegion();
 
-            //arn:aws:EMRWALService:us-west-2:123456789123:walNameSpace/walName
+            //arn:aws:emrwal:us-west-2:123456789123:walNameSpace/walName
             String arn = "arn:" + partition + ":emrwal:" + region + ":" + accountId + ":workspace/" + model.getWALWorkspaceName();
 
             ListTagsForResourceResponse response = proxyClient.injectCredentialsAndInvokeV2(Translator.translateToReadRequest(arn),
