@@ -1,6 +1,6 @@
 {
-  "typeName": "AWS::EMRWAL::WALWorkspace",
-  "description": "Resource schema for AWS::EMRWAL::WALWorkspace Type",
+  "typeName": "AWS::EMR::WALWorkspace",
+  "description": "Resource schema for AWS::EMR::WALWorkspace Type",
   "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-resource-providers-emrwal",
   "definitions": {
     "Tag": {
@@ -43,9 +43,6 @@
       "items": {
         "$ref": "#/definitions/Tag"
       }
-    },
-    "Arn": {
-      "type": "string"
     }
   },
   "additionalProperties": false,
@@ -57,19 +54,17 @@
     "tagProperty": "/properties/Tags"
   },
   "primaryIdentifier": [
-    "/properties/Arn"
+    "/properties/WALWorkspaceName"
   ],
   "createOnlyProperties": [
     "/properties/WALWorkspaceName"
-  ],
-  "readOnlyProperties": [
-    "/properties/Arn"
   ],
   "handlers": {
     "create": {
       "permissions": [
         "emrwal:CreateWorkspace",
-        "emrwal:TagResource"
+        "emrwal:TagResource",
+        "iam:CreateServiceLinkedRole"
       ]
     },
     "read": {
@@ -79,12 +74,19 @@
     },
     "delete": {
       "permissions": [
-        "emrwal:DeleterWorkspace"
+        "emrwal:DeleteWorkspace"
       ]
     },
     "list": {
       "permissions": [
         "emrwal:ListWorkspaces"
+      ]
+    },
+    "update": {
+      "permissions": [
+        "emrwal:TagResource",
+        "emrwal:UntagResource",
+        "emrwal:ListTagsForResource"
       ]
     }
   }
